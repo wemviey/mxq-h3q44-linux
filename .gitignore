@@ -1,0 +1,20 @@
+*.cmd
+*.ko
+*.mod
+*.mod.c
+*.o
+.cache.mk
+.tmp_versions/
+Module.symvers
+modules.order
+
+# Large Android stock images / boot payloads.
+*.img
+**/boot.fex
+**/boot0_*.fex
+**/boot_package.fex
+**/bootloader.fex
+**/recovery.fex
+**/system.fex
+**/u-boot.fex
+**/V*.fex
