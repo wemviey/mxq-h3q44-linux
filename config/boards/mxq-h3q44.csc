@@ -1,0 +1,8 @@
+# MXQ 4K H3Q44 V3.0 - Allwinner H3
+BOARD_NAME="MXQ 4K H3Q44 V3.0"
+BOARD_VENDOR="mxq"
+BOARDFAMILY="sun8i"
+BOARD_MAINTAINER="community"
+BOOTCONFIG="orangepi_pc"
+KERNEL_TARGET="current"
+KERNEL_TEST_TARGET="current"
