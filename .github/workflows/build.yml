@@ -1,4 +1,5 @@
 name: Build MXQ H3Q44
+
 on:
   workflow_dispatch:
   push:
@@ -7,33 +8,44 @@ on:
       - 'config/boards/mxq-h3q44.tvb'
       - 'dtb/**'
       - '.github/workflows/build.yml'
+
 permissions:
   contents: read
+
 jobs:
-  build:
+  construir:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout MXQ files
         uses: actions/checkout@v4
         with:
           path: project
+
       - name: Checkout Armbian
         uses: actions/checkout@v4
         with:
           repository: armbian/build
           path: armbian-build
-      - name: Integrate MXQ board and device tree
+
+      - name: Configurar QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: all
+
+      - name: Integrar placa e device tree
         run: |
           cp project/config/boards/mxq-h3q44.tvb armbian-build/config/boards/
           for d in armbian-build/patch/kernel/archive/sunxi-*/dt_32; do
             mkdir -p "$d"
             cp project/dtb/sun8i-h3-mxq-4k-h3q44.dts "$d/"
           done
-      - name: Build minimal SD image
+
+      - name: Compilar imagem SD
         run: |
           cd armbian-build
           ./compile.sh BOARD=mxq-h3q44 BRANCH=current RELEASE=bookworm BUILD_MINIMAL=yes BUILD_DESKTOP=no KERNEL_CONFIGURE=no
-      - name: Publish image
+
+      - name: Publicar imagem
         uses: actions/upload-artifact@v4
         with:
           name: MXQ-H3Q44-SD-image
