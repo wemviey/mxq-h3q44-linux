@@ -1,0 +1,10 @@
+# MXQ 4K H3Q44 V3.0 - Allwinner H3
+BOARD_NAME="MXQ 4K H3Q44 V3.0"
+BOARD_VENDOR="mxq"
+BOARDFAMILY="sun8i"
+BOARD_MAINTAINER="wemviey"
+INTRODUCED="2019"
+BOOTCONFIG="orangepi_pc_defconfig"
+KERNEL_TARGET="current"
+KERNEL_TEST_TARGET="current"
+BOOT_FDT_FILE="allwinner/sun8i-h3-mxq-4k-h3q44.dtb"
